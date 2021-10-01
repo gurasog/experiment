@@ -1,0 +1,39 @@
+PageLayoutExample:
+
+
+<PageLayoutExample@BoxLayout>:
+    orientation: "vertical"
+    Label:
+        size_hint: 1, 0.9
+        text: "jej"
+    GridLayoutExample:
+        size_hint: 1, 0.1
+
+
+<GridLayoutExample@GridLayout>:
+    #rows
+    #cols
+    rows:1
+    cols:4
+    Button:
+        text:"Круг"
+        #on_press: app.play_sound()
+    Button:
+        text:"Квадрат"
+    Button:
+        text:"Ок"
+        #on_press: app.sound_on()
+        #on_release: app.sound_off()
+
+        Image:
+            source: 'circle_button.png'
+
+    Button:
+        text:"Следующий"
+        #on_press: app.sound_off()
+
+<BoxLayoutExample>:
+    orientation: "vertical"
+    Button:
+        text: "A"
+        size:
