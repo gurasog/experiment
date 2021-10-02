@@ -17,20 +17,20 @@ PageLayoutExample:
     cols:4
     Button:
         text:"Круг"
-        #on_press: app.play_sound()
+        on_press: app.circle()
     Button:
         text:"Квадрат"
+        on_press: app.square()
     Button:
         text:"Ок"
-        #on_press: app.sound_on()
-        #on_release: app.sound_off()
+        on_press: app.ok()
 
-        Image:
-            source: 'circle_button.png'
+        #Image:
+        #    source: 'circle_button.png'
 
     Button:
         text:"Следующий"
-        #on_press: app.sound_off()
+        on_press: app.next()
 
 <BoxLayoutExample>:
     orientation: "vertical"

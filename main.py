@@ -5,6 +5,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.graphics import Color, Line
 from kivy.core.audio import SoundLoader
 from kivy.core.window import Window
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
 
 class SoundPlayer(BoxLayout):
 
@@ -91,6 +93,10 @@ class TheLabApp(App):
     def __init__(self):
         super().__init__()
         self.sound = SoundLoader.load('sound.mp3')
+        self.sequence=[1,0,0,1,1]
+        self.number=0
+        self.answers=[]
+        self.current_answer=None
 
         Window.bind(mouse_pos=self.sound_on)
         Window.bind(mouse_pos=self.sound_off)
@@ -107,6 +113,58 @@ class TheLabApp(App):
                 self.sound.stop()
 
 
+    def sound_on_сircle(self, w, p):
+        if (((p[0] - 200) ** 2 + (p[1] - 200) ** 2) < 200 ** 2) and self.sound.state == 'stop':
+            if self.sound:
+                self.sound.play()
+
+    def sound_off_сircle(self,w,p):
+        if (((p[0] - 200) ** 2 + (p[1] - 200) ** 2) > 200**2) and self.sound.state == 'play':
+            if self.sound:
+                print(self.sound)
+                self.sound.stop()
+
+    def next(self):
+
+        if self.current_answer in (0, 1):
+
+        self.number=self.number+1
+
+        if self.number< len(self.sequence):
+            trial=self.sequence[self.number]
+
+            if trial==1:
+                Window.unbind(mouse_pos=self.sound_on_сircle)
+                Window.unbind(mouse_pos=self.sound_off_сircle)
+                Window.bind(mouse_pos=self.sound_off)
+                Window.bind(mouse_pos=self.sound_off)
+
+
+            if trial==0:
+                Window.unbind(mouse_pos=self.sound_off)
+                Window.unbind(mouse_pos=self.sound_off)
+                Window.bind(mouse_pos=self.sound_on_сircle)
+                Window.bind(mouse_pos=self.sound_off_сircle)
+        else:
+            App.get_running_app().stop()
+
+    def circle(self):
+        self.current_answer=0
+
+    def square(self):
+        self.current_answer = 1
+
+    def ok(self):
+        if self.current_answer in (0,1):
+            self.answers.append(self.current_answer)
+            self.current_answer=None
+        else:
+            print('exception')
+            popup = Popup(title='Test popup',
+                          content=Label(text='Выберитее ответ'),
+                          size_hint=(None, None), size=(400, 400))
+
+            popup.open()
 
 #class GridLayoutExample(GridLayOut)
 #class BoxLayoutExample(BoxLayout):
