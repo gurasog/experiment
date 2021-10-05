@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.uix.label import Label
-
+import numpy as np
 from kivy.core.audio import SoundLoader
 
 class TestApp(App):

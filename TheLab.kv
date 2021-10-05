@@ -2,35 +2,46 @@ PageLayoutExample:
 
 
 <PageLayoutExample@BoxLayout>:
+
     orientation: "vertical"
+    gridLayout: gridLayoutExample
     Label:
         size_hint: 1, 0.9
-        text: "jej"
+        text: ' '
+
+    #Image:
+    #    source: 'mylogo.png'
+    #    size: self.texture_size
+
     GridLayoutExample:
+        id: gridLayoutExample
         size_hint: 1, 0.1
 
 
-<GridLayoutExample@GridLayout>:
+<GridLayoutExample>:
     #rows
     #cols
     rows:1
-    cols:4
+    cols:5
+    next_button: nextbutton
     Button:
         text:"Круг"
-        on_press: app.circle()
+        on_press: app.gridLayoutExample.circle()
     Button:
         text:"Квадрат"
-        on_press: app.square()
+        on_press: app.gridLayoutExample.square()
     Button:
         text:"Ок"
-        on_press: app.ok()
+        on_press: app.gridLayoutExample.ok()
 
         #Image:
         #    source: 'circle_button.png'
 
     Button:
+        id: nextbutton
         text:"Следующий"
-        on_press: app.next()
+        on_press: app.gridLayoutExample.next()
+
 
 <BoxLayoutExample>:
     orientation: "vertical"
